@@ -4,6 +4,7 @@ class SimpleHighLevelComponent(UserInterfaceHighLevelComponent):
     def __init__(self):
         self._root_basic_component = None
         self._parent = None
+        self._adjustment_strategy = None
     def get_user_interface_api(self):
         return "tkinter"
     def get_root_basic_component(self):
@@ -19,6 +20,11 @@ class SimpleHighLevelComponent(UserInterfaceHighLevelComponent):
             self._parent._remove_child_without_updating_child(self)
         self._parent = parent
         self._tkinter_new_parent()
+    def get_adjustment_strategy(self):
+        return self._adjustment_strategy
+    def set_adjustment_strategy(self,strategy):
+        self._adjustment_strategy = strategy
+        self._new_adjustment_strategy()
     def update(self):
         raise NotImplementedError
     def _simple_create_new_basic_components(self):
@@ -29,6 +35,8 @@ class SimpleHighLevelComponent(UserInterfaceHighLevelComponent):
         self._destroy_basic_components()
         self._simple_create_new_basic_components()
     def _tkinter_new_parent(self):
+        self._create_new_basic_components_and_update()
+    def _new_adjustment_strategy(self):
         self._create_new_basic_components_and_update()
     def _create_new_basic_components_and_update(self):
         self._create_new_basic_components()
