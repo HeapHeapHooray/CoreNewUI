@@ -1,0 +1,9 @@
+FailedToCreateBasicComponent Exception
+CircularHierarchy Exception
+NotImplementedError for current tcl error handling
+
+AdjustmentStrategies.
+OBS: Note that the current high level component architecture creates and updates basic components when a new parent is set, the adjustment strategy will then be also a factor
+for creating and updating basic components, only setting the parent is not enough, you also have to set a strategy for the basic components to be created.
+
+Create proper BasicComponents and HighLevelComponents, and add new ones like a Listbox BasicComponent or a ScrolledText BasicComponent and a VLCVideo HighLevelComponent. 

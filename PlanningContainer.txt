@@ -1,0 +1,15 @@
+Frame1(Frame2) - Frame1 contains a basic component, Frame2 contains a basic component that is a child of frame1 basic component
+
+Frame2.add_child(Frame1)
+
+Frame2.children += Frame1
+
+Frame1.parent.children -= Frame1
+
+Frame1.parent = Frame2
+
+Frame1.destroy_basic_components() - Frame1 is empty, Frame2 now contains an invalid basic component
+
+Frame1.create_basic_components() - Frame1 creates basic components that uses frame2 basic component as parent, but remember it is invalid.
+
+

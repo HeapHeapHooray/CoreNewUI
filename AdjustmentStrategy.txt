@@ -1,0 +1,49 @@
+AdjustmentStrategy
+     - AdjustmentStrategies
+            - FillStrategy
+            - CompositeStrategy
+            - BaseAdjustmentStrategy
+     - AdjustmentUnit
+            - ProportionalAdjustmentUnit
+            - AbsoluteAdjustmentUnit
+            - BaseAdjustmentUnit
+     - AdjustmentAnchor # OBS: Should probably be an enum.
+            - TopAdjustmentAnchor
+            - BottomAdjustmentAnchor
+            - BottomLeftAdjustmentAnchor
+            ...
+
+class BaseAdjustmentStrategy:
+      def __init__(self):
+          self._target_basic_component = None
+      def _tkinter_apply_strategy(self,basic_component):
+          raise NotImplementedError
+      def apply_strategy(self,basic_component: UserInterfaceBasicComponent):
+          if not isinstance(basic_component,UserInterfaceBasicComponent):
+                 raise TypeError
+          if basic_component is self._target_basic_component:
+             return
+          user_interface_api = basic_component.get_user_interface_api()
+          if user_interface_api == "tkinter":
+             self._tkinter_apply_strategy(basic_component)
+          self._target_basic_component = basic_component
+
+class CompositeStrategy(BaseAdjustmentStrategy):
+      def __init__(self,adjustment_anchor: AdjustmentAnchor,height: Union[AbsoluteAdjustmentUnit,ProportionalAdjustmentUnit],width: Union[AbsoluteAdjustmentUnit,ProportionalAdjustmentUnit],
+                        x_position: Union[AbsoluteAdjustmentUnit,ProportionalAdjustmentUnit],y_position: Union[AbsoluteAdjustmentUnit,ProportionalAdjustmentUnit]
+                        x_position_absolute_offset: Union[AbsoluteAdjustmentUnit,int],y_position_absolute_offset: Union[AbsoluteAdjustmentUnit,int]):
+         # Implementation goes here
+     def _tkinter_apply_strategy(self,basic_component):
+         # ...
+         args = # get arguments somehow
+         native_basic_component = basic_component.get_native_basic_component()
+         native_basic_component.place(*args)
+class FillStrategy(BaseAdjustmentStrategy):
+      def __init__(self):
+          super().__init__()
+      def _apply_strategy_user_interface_api_agnostic(self,basic_component):
+          strategy = CompositeStrategy(BottomLeftAdjustmentAnchor,ProportionalAdjustmentUnit(1.0),ProportionalAdjustmentUnit(1.0),ProportionalAdjustmentUnit(0.0),ProportionalAdjustmentUnit(0.0),
+                                       0,0)
+          strategy.apply_strategy(basic_component)
+     _tkinter_apply_strategy = _apply_strategy_api_agnostic
+         

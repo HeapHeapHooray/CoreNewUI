@@ -1,0 +1,4 @@
+Unity HUI = Unity Holographic User Interface.
+
+TkinterVideo = VideoDisplay[TkinterAPI.Components.HighLevelComponents.Video or TkinterAPI.Components.HighLevelComponents.VLCVideo]
+UnityHUIVideo = UnityHUIVideoDisplay[UnityHUIAPI.Components.HighLevelComponents.Video]

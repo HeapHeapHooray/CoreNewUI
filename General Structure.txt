@@ -1,0 +1,34 @@
+Folder Structure:
+
+Adjustment
+- AdjustmentStrategies
+Displays
+BaseComponentClasses
+UI_APIs
+- UI_API
+  - InterfaceManager [OPTIONAL - Used to store all TopLevelUI instances,etc...]
+  - TopLevelUI
+  - Components
+    - BasicComponents
+    - HighLevelComponents
+
+DisplayObject[UI_API.Components.HighLevelComponentObject[UI_API.Components.BasicComponentObject]]
+
+HighLevelComponentObject contains a BasicComponentObject it is not inherited from it !
+
+Example:
+
+ImageDisplay[TkinterAPI.Components.HighLevelComponents.Image[TkinterAPI.Components.BasicComponents.Label]]
+
+
+Label -> TkinterBasicComponent -> UIBasicComponent
+
+Image[Label] -> UIHighLevelComponent
+
+class Image(UIHighLevelComponent):
+     def __init__(self):
+         super()
+         self._label = TkinterAPI.BasicComponents.Label()
+         self._basic_component = self._label
+    def set_image(self,image):
+        ...

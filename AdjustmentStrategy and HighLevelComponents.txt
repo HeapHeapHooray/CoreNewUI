@@ -1,0 +1,1 @@
+HighLevelComponent.set_strategy recreates the basic component, the recreation also makes the strategy to be applied to the new basic component

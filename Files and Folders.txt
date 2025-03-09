@@ -1,0 +1,41 @@
+Folder Structure:
+
+Adjustment
+- AdjustmentStrategies
+  - FillStrategy
+  - NullStrategy
+- AdjustmentStrategy.py
+Displays
+- ImageDisplay
+- VideoDisplay
+BaseComponentClasses
+- UserInterfaceBasicComponent
+- UserInterfaceHighLevelComponent
+SpecializedCode
+- Tkinter
+  - InterfaceManager [OPTIONAL - Used to store all TopLevelInterface instances,etc...]
+    - TopLevelInterfaceManager
+  - TopLevelInterface
+    - TopLevelWindow
+  - Components
+    - BasicComponents
+      - Base
+        - TkinterBasicComponent
+      - Label
+      - Frame
+    - HighLevelComponents
+      - Base
+        - TkinterHighLevelComponent
+      - Image
+      - Video
+      - VLCVideo
+
+
+
+
+UI_APIs
+- UI_API
+  - TopLevelUI
+  - Components
+    - BasicComponents
+    - HighLevelComponents
