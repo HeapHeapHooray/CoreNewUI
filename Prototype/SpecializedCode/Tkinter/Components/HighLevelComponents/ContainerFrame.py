@@ -13,10 +13,10 @@ class ContainerFrame(ContainerHighLevelComponent):
         if self.is_able_to_create_new_basic_components():
             self._root_basic_component = Frame(self._parent.get_root_basic_component())
     def update(self):
-        if self._root_basic_component != None:
+        if self._root_basic_component != None and self._adjustment_strategy != None:
             self._root_basic_component.set_pack_propagation(should_propagate=False)
-            self._root_basic_component.place()
             self._root_basic_component.set_background_color(self._background_color)
+            self._adjustment_strategy.apply_strategy(self._root_basic_component)
     def set_background_color(self,color: str):
         self._background_color = color
         self.update()
