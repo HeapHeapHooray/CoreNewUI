@@ -12,9 +12,6 @@ class Frame(SimpleBasicComponent):
             propagation_flag = 1
         self._native_basic_component.pack_propagate(propagation_flag)
     @handle_tcl_error
-    def place(self,**args):
-        self._native_basic_component.place(**args)
-    @handle_tcl_error
     def set_background_color(self,color: str):
         self._native_basic_component.config(bg=color)
         

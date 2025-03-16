@@ -5,6 +5,7 @@ print(Adjustment.AdjustmentStrategies.BaseAdjustmentStrategy)
 print(Adjustment.AdjustmentStrategies.CompositeAdjustmentStrategy)
 
 prop = Adjustment.AdjustmentUnits.ProportionalAdjustmentUnits
+abso = Adjustment.AdjustmentUnits.AbsoluteAdjustmentUnits
 
 class strat:
     def apply_strategy(self,basic_component):
@@ -13,7 +14,9 @@ class strat:
 adj = Adjustment.AdjustmentStrategies.CompositeAdjustmentStrategy(Adjustment.AdjustmentAnchor.TopLeft,
 prop(0.5),prop(0.5),prop(0.0),prop(0.50))
 adj2 = Adjustment.AdjustmentStrategies.CompositeAdjustmentStrategy(Adjustment.AdjustmentAnchor.TopLeft,
-prop(0.5),prop(0.5),prop(0.5),prop(0.0)) 
+prop(0.5),prop(0.5),prop(0.5),prop(0.0))
+adj3 = Adjustment.AdjustmentStrategies.CompositeAdjustmentStrategy(Adjustment.AdjustmentAnchor.TopLeft,
+prop(1.0),abso(15),prop(0.5),prop(0.0))
 
 window = SpecializedCode.Tkinter.Components.HighLevelComponents.TopLevelWindow()
 window2 = SpecializedCode.Tkinter.TopLevelInterface.TopLevelWindow()
@@ -44,4 +47,9 @@ text3.set_adjustment_strategy(strat())
 frame2.add_child(text3)
 frame3 = SpecializedCode.Tkinter.Components.HighLevelComponents.ContainerFrame()
 frame3.set_background_color("Red")
+frame3.set_adjustment_strategy(adj)
 frame2.add_child(frame3)
+
+scrollbar = SpecializedCode.Tkinter.Components.HighLevelComponents.Scroll()
+scrollbar.set_adjustment_strategy(adj3)
+window.add_child(scrollbar)

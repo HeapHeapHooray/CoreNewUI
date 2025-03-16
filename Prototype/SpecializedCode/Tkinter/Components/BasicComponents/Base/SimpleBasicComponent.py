@@ -1,6 +1,6 @@
 from .... import TCLRuntimeInitializer
 from ......BaseComponentClasses import UserInterfaceBasicComponent
-from ..Common import get_tcl_error_handling_context
+from ..Common import get_tcl_error_handling_context,handle_tcl_error
 
 class SimpleBasicComponent(TCLRuntimeInitializer,UserInterfaceBasicComponent):
     def __init__(self,parent,native_basic_component_type):
@@ -40,3 +40,6 @@ class SimpleBasicComponent(TCLRuntimeInitializer,UserInterfaceBasicComponent):
         with get_tcl_error_handling_context() as _:
             output = self._native_basic_component.winfo_id()
         return output
+    @handle_tcl_error
+    def place(self,**args):
+        self._native_basic_component.place(**args)

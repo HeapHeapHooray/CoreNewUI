@@ -18,8 +18,6 @@ class TextFrame(SimpleHighLevelComponent):
             self._root_basic_component.set_text(self._text)
             self._root_basic_component.set_background_color(self._background_color)
             self._adjustment_strategy.apply_strategy(self._root_basic_component)
-            #self._root_basic_component.pack()
-            #self._root_basic_component.place()
     def set_text(self,text: str):
         self._text = text
         self.update()
