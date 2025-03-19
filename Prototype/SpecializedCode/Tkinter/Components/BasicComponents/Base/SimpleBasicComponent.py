@@ -43,3 +43,6 @@ class SimpleBasicComponent(TCLRuntimeInitializer,UserInterfaceBasicComponent):
     @handle_tcl_error
     def place(self,**args):
         self._native_basic_component.place(**args)
+    @handle_tcl_error
+    def bind(self,*args):
+        self._native_basic_component.bind(*args)
