@@ -1,4 +1,5 @@
 from .SimpleHighLevelComponent import SimpleHighLevelComponent
+from ......Exceptions import CircularHierarchyException
 
 class ContainerHighLevelComponent(SimpleHighLevelComponent):
     def __init__(self):
@@ -7,6 +8,14 @@ class ContainerHighLevelComponent(SimpleHighLevelComponent):
     def add_child(self,child):
         if child is self:
             return
+        current_parent = self
+        parents_set = set()
+        parents_set.add(child)
+        parents_set.add(current_parent)
+        while current_parent != None:
+            current_parent = current_parent.get_parent()
+            if current_parent in parents_set:
+                raise CircularHierarchyException
         # This prevents from having duplicate child elements in the list.
         if not child in self._children:
             self._children.append(child)
