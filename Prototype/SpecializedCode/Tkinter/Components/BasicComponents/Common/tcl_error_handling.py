@@ -8,7 +8,8 @@ class TclErrorHandlingContext:
     def __exit__(self,exception_type,exception_value,exception_traceback):
         if exception_type is TclError:
             print("TclErrorHandlingContext: TclError !")
-            
+
+            raise NotImplemented from TclError
             # Exception was handled succesfully.
             return True
         else:
@@ -24,5 +25,6 @@ def handle_tcl_error(func):
         try:
             return func(*args,**kwargs)
         except TclError:
-            print("TclError !")
+            raise NotImplemented from TclError
+            #print("TclError !")
     return wrapper_handle_tcl_error
