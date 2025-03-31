@@ -13,7 +13,7 @@ class ImageDisplay:
     def hide(self):
         self.window.close()
     def conf(self,event):
-        if event.widget == self.window.get_root_native_basic_component():
+        if event.widget == self.image_frame.get_root_native_basic_component():
             new_image = self.image.copy()
             new_image.thumbnail((event.width,event.height))
             self.image_tk = ImageTk.PhotoImage(new_image)
@@ -31,5 +31,5 @@ class ImageDisplay:
         self.window = TopLevelWindow()
         self.window.add_child(self.image_frame)
         self.window.set_background_color("Red")
-        self.window.get_root_basic_component().bind("<Configure>",self.conf)
+        self.image_frame.get_root_basic_component().bind("<Configure>",self.conf)
         self.image = Image.open("test.png")
