@@ -1,6 +1,7 @@
 from ..SpecializedCode.Tkinter.Components.HighLevelComponents import TopLevelWindow
 from ..SpecializedCode.Tkinter.Components.HighLevelComponents import ImageFrame
 from ..Adjustment.AdjustmentStrategies import CompositeAdjustmentStrategy
+from ..Adjustment.AdjustmentStrategies import FillAdjustmentStrategy
 from ..Adjustment.AdjustmentUnits import ProportionalAdjustmentUnits
 from ..Adjustment import AdjustmentAnchor
 from PIL import Image,ImageTk
@@ -24,12 +25,13 @@ class ImageDisplay:
             if self.window.is_open():
                 return
         prop = ProportionalAdjustmentUnits
-        adj = CompositeAdjustmentStrategy(AdjustmentAnchor.TopLeft,prop(1.0),prop(1.0),prop(0.0),prop(0.0))
+        #adj = CompositeAdjustmentStrategy(AdjustmentAnchor.TopLeft,prop(1.0),prop(1.0),prop(0.0),prop(0.0))
+        adj = FillAdjustmentStrategy()
         self.image_frame = ImageFrame()
         self.image_frame.set_background_color("Yellow")
         self.image_frame.set_adjustment_strategy(adj)
         self.window = TopLevelWindow()
         self.window.add_child(self.image_frame)
         self.window.set_background_color("Red")
-        self.image_frame.get_root_basic_component().bind("<Configure>",self.conf)
         self.image = Image.open("test.png")
+        self.image_frame.get_root_basic_component().bind("<Configure>",self.conf)
